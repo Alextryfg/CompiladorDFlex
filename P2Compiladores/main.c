@@ -1,14 +1,13 @@
 #include "tabladesimbolos.h"
 #include "sintactico.h"
-#include "sistemaEntrada.h"
 #include "errores.h"
 
 int main(int argc, char **argv) {
 
-    if(argc == 2){
+    //if(argc == 2){
 
         /* Inicializamos el sistema de entrada */
-        init(argv[1]);
+        init("C:\\Users\\USUARIO\\Desktop\\P2Compiladores\\CompiladorDFlex\\P2Compiladores\\regression.d");
 
         /* Inicializamos la tabla de simbolos y la imprimimos por pantalla */
         initTabla();
@@ -26,9 +25,9 @@ int main(int argc, char **argv) {
         /* Cerramos el archivo regression.d */
         cerrarD();
 
-    }else{
-        errorD(5);
-    }
+    //}else{
+      //  errorD(5);
+    //}
 
 
 }

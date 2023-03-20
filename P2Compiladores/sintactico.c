@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lexico.h"
 #include "definiciones.h"
 #include "abb.h"
 
