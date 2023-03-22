@@ -32,8 +32,8 @@ OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\
 %%
 
 [ \t\n]+ 
-(\/\/(.*))  /* Comentario de una sola linea */   
-(\/\*[\s\S]*?\*\/)  /* Comentario en bloque */
+\/\/(.*)  /* Comentario de una sola linea */   
+\/\*(.*\n)*.*\*\/  /* Comentario en bloque */
 
 {IDENTIFICADOR}     return ID;
 
