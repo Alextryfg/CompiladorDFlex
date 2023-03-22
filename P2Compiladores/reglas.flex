@@ -27,16 +27,16 @@ NUM_FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 COMENTARIO_BLOQUE {\/\*(.|\n)*?\*\/}
 COMENTARIO_LINEA {\/\/.*}
 
-STRING (\"(.\\\").*\")
+STRING (".*")
 
-OPERADORES (\+\+|\-|\-\=|\<\<|\>|\>\=|\>\>|\(|\)|\{|\}|\[|\]|\,|\.|\;|\=|\&\&|\|\||\+|\+\=|\-\-|\|\\=|\/|\/\=|\<|\<\=)
+OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\>|\?|\=|\*|\*\=|\-|\+)
 
 
 %%
 
 [ \t\n]+      
-COMENTARIO_BLOQUE  
-COMENTARIO_LINEA    
+{COMENTARIO_BLOQUE}  
+{COMENTARIO_LINEA}    
 
 {IDENTIFICADOR}     return ID;
 
@@ -72,6 +72,8 @@ while (num > 0 && c != EOF) {
     }
 }
 }
+
+<<EOF>>         return -1;
 
 %%
 

@@ -9,7 +9,7 @@ abb tabla;
 /* Almaceno las Keywords del programa */
 
 tipoelem initial[] = {{"identificador", ID},{"import", IMPORT},
-                    {"string", STRING}, {"int", INT}, {"float", FLOAT}, {"while", WHILE},
+                    {"int", INT}, {"float", FLOAT}, {"while", WHILE},
                     {"foreach", FOREACH}, {"return", RETURN}, {"void", VOID}, {"cast", CAST}, {"double", DOUBLE} };
 
 /*

@@ -4,7 +4,6 @@
 // Palabras reservadas e Identificadores
 #define IMPORT 300
 #define ID 301
-#define STRING 302
 #define INT 303
 #define FLOAT 304
 #define WHILE 305
@@ -17,6 +16,7 @@
 //TIPO DE DATO
 #define INTEGER 311
 #define FLOATPOINT 312
+#define STRING 302
 
 //Operadores
 #define OPERADOR 403
