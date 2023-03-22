@@ -71,4 +71,17 @@ MAYORMAYOR >>
 MENOR <
 MAYOR >
 
+/* Esto es para informar de erorr en caso de que lo encontrado no coincida con nada de lo que tenemos */
+%option nounput
 
+/* En caso de que no haya entrada, el analizador se detendra en lugar de quedarse esperando por una entrada */
+%option noinput
+
+%%
+
+/* Todo esto lo ignorara */
+
+[ \t\n]+        /* se come los espacios en blanco */
+\/\*(.|\n)*?\*\/   /* Comentario en Bloque */
+\/\/.*     /* Comentario de una Linea */
+\+(?:[^+]|\+(?!\/)|\+\/(?!\/))*\+\/  /* Comentario Anidado */
