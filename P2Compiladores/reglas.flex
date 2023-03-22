@@ -27,7 +27,7 @@ NUM_FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 COMENTARIO_BLOQUE {\/\*(.|\n)*?\*\/}
 COMENTARIO_LINEA {\/\/.*}
 
-STRING {\"(.\\\").*\"}
+STRING (\"(.\\\").*\")
 
 OPERADORES (\+\+|\-|\-\=|\<\<|\>|\>\=|\>\>|\(|\)|\{|\}|\[|\]|\,|\.|\;|\=|\&\&|\|\||\+|\+\=|\-\-|\|\\=|\/|\/\=|\<|\<\=)
 
@@ -45,6 +45,8 @@ COMENTARIO_LINEA
 {NUM_FLOAT}         return FLOATPOINT;
 
 {OPERADORES}        return OPERADOR;
+
+{STRING}            return STRING;
 
 "/+" {
 //Numero de comentarios anidades, al principio es minimo uno debido al /+
