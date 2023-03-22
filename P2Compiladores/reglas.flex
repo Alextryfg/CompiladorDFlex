@@ -26,14 +26,14 @@ NUM_FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 
 STRING (".*")
 
-OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\>|\?|\=|\*|\*\=|\-|\+|\[|\]|\/|\/\=)
+OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\>|\?|\=|\*|\*\=|\-|\+|\[|\]|\/|\/\=|\%)
 
 
 %%
 
 [ \t\n]+ 
-\/\*(.*\n)*.*\*\/      
-\/\/(.*)    
+(\/\/(.*))  /* Comentario de una sola linea */   
+(\/\*[\s\S]*?\*\/)  /* Comentario en bloque */
 
 {IDENTIFICADOR}     return ID;
 
@@ -44,8 +44,6 @@ OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\
 {STRING}            return STRING;
 
 {OPERADORES}        return OPERADOR;
-
-
 
 "/+" {
 //Numero de comentarios anidades, al principio es minimo uno debido al /+
