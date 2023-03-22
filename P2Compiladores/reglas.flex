@@ -1,7 +1,7 @@
 %{
 #include "definiciones.h"
 #include "errores.h"
-#include "tablaSimbolos.h"
+#include "tabladesimbolos.h"
 %}
 
 ALFA [a-zA-Z]
@@ -67,7 +67,15 @@ MAYOR >
 \/\*(.|\n)*?\*\/   
 \/\/.*     
 
-{IDENTIFICADOR}     return ID; 
+{IDENTIFICADOR}     return ID;
+
+{NUM_ENTERO}         return INTEGER;
+
+{NUM_FLOAT}         return FLOATPOINT;
+
+{STRING}            return STRING;
+
+
 
 %%
 
@@ -81,6 +89,7 @@ void init(char *nombreArchivo){
     }
     yyin = archivo;
 }
+
 void siguiente_componente_lexico(tipoelem *actual){
     actual->codigo = yylex();
     if(actual->codigo != 0){
@@ -88,10 +97,10 @@ void siguiente_componente_lexico(tipoelem *actual){
     }
     if(actual->codigo == ID){
         //buscar en la tabla de simbolos
-        findElement(actual);
+        findCodigo(actual);
     }else if(actual->codigo == -1){
         //componente lexico no reconocido
-        showError(8);
+        //showError(8);
     }else if(actual->codigo == OPERATOR){
         //si es solo un caracter se devuekve como codigo su codigo ascii
         //de esta forma coincide por completo con los codigoes de la práctica anterior
@@ -101,7 +110,7 @@ void siguiente_componente_lexico(tipoelem *actual){
     }else if(actual->codigo == 0){
         //al llamar a yyterminate, se devuelve 0
         //se debe cambiar al codigo que tenemos definido para EOF en definiciones.h
-        actual->codigo = EOFVALUE;
+        actual->codigo = -1;
     }
 }
 

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "definiciones.h"
 #include "abb.h"
+#include "lex.yy.h"
 
 /*
  * Funcion que imprime el contenido del lexema dependiendo del caso
@@ -34,7 +35,9 @@ void compilarD(){
     comp.codigo=-1;
 
     /*Invoco a siguiente_componente lexico hasta -1 que indica que llego el EOF */
-    while((&siguiente_componente_lexico) != -1){
+    do{
+        siguiente_componente_lexico(&comp);
+
         _printComp(comp);
 
         /* Se libera la memoria del lexema */
@@ -43,9 +46,7 @@ void compilarD(){
             comp.lexema=NULL;
         }
 
-        /* Termina */
-
-    }
+    }while(comp.codigo != -1);
 
 
 
