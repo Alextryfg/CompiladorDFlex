@@ -24,7 +24,7 @@ ENTERO_DECIMAL_2 ({DIGITO_SEPARADO}+{EXPONENCIAL})?
 
 NUM_FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 
-STRING (".*")
+STRING (\"(.*\\\")*.*\")
 
 OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\>|\?|\=|\*|\*\=|\-|\+|\[|\]|\/|\/\=|\%)
 
@@ -33,7 +33,7 @@ OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\
 
 [ \t\n]+ 
 \/\/(.*)  /* Comentario de una sola linea */   
-\/\*(.*\n)*.*\*\/  /* Comentario en bloque */
+("/*"([^*]|(\*+[^*/]))*\*+\/) /* Comentario en bloque */
 
 {IDENTIFICADOR}     return ID;
 
