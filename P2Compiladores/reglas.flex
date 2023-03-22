@@ -75,8 +75,6 @@ while (num > 0 && c != EOF) {
 }
 }
 
-<<EOF>>         return -1;
-
 %%
 
 
