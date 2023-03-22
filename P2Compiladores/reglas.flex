@@ -24,9 +24,6 @@ ENTERO_DECIMAL_2 ({DIGITO_SEPARADO}+{EXPONENCIAL})?
 
 NUM_FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 
-COMENTARIO_BLOQUE (\/\*(.|\n)*?\*\/)
-COMENTARIO_LINEA (\/\/.*)
-
 STRING (".*")
 
 OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\>|\?|\=|\*|\*\=|\-|\+|\[|\]|\/|\/\=)
@@ -34,9 +31,9 @@ OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\
 
 %%
 
-[ \t\n]+      
-COMENTARIO_BLOQUE 
-COMENTARIO_LINEA    
+[ \t\n]+ 
+\/\*(.*\n)*.*\*\/      
+\/\/(.*)    
 
 {IDENTIFICADOR}     return ID;
 
@@ -74,6 +71,8 @@ while (num > 0 && c != EOF) {
     }
 }
 }
+
+<<EOF>>         return -1;
 
 %%
 
