@@ -1,5 +1,5 @@
-#ifndef LEXX.YY_H_
-#define LEXX.YY_H_
+#ifndef LEXX_YY_H_
+#define LEXX_YY_H_
 #include "abb.h"
 
 void init(char *nombreArchivo);
