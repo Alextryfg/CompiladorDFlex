@@ -4,6 +4,8 @@
 #include "tabladesimbolos.h"
 %}
 
+%option noyywrap
+
 ALFA [a-zA-Z]
 BARRABAJA [_]
 DIGITO [0-9]
@@ -79,7 +81,7 @@ void init(char *nombreArchivo){
     FILE *archivo;
     archivo = fopen(nombreArchivo, "r");
     if(archivo == NULL){
-        showError(1);
+        //showError(1);
     }
     yyin = archivo;
 }
