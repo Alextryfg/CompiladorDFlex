@@ -19,23 +19,7 @@
 #define FLOATPOINT 312
 
 //Operadores
-#define SUMASUMA 400 //(++)
-#define SUMAIGUAL 401 //(+=)
-#define DOSIGUAL 402 //(==)
-#define SIMPLE 403
-#define MENOSMENOS 404 //(--)
-#define MENOSIGUAL 405 //(-=)
-#define PORIGUAL 406 //(*=)
-#define DOSBARRA 407 //(||)
-#define BARRAIGUAL 408 //(|=)
-#define DOSAND 409 //(&&)
-#define ANDIGUAL 410 //(&=)
-#define PORCIENTOIGUAL 411 //(%=)
-#define MENORIGUAL 412 //(<=)
-#define MENORMENOR 413 //(<<)
-#define MAYORIGUAL 414 //(>=)
-#define MAYORMAYOR 415 //(>>)
-
+#define OPERADORES 403
 
 //Los delimitadores, tales como corchete, parentesis, llaves, puntos, comas, Asterisco (), [] , {} , . , , , * , + , /, ; ,...,
 //simplemente devolvere su código ASCII.

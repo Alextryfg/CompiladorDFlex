@@ -26,32 +26,10 @@ NUM_FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 
 COMENTARIO_BLOQUE {\/\*(.|\n)*?\*\/}
 COMENTARIO_LINEA {\/\/.*}
-COMENTARIO {COMENTARIO_BLOQUE}|{COMENTARIO_LINEA}|{COMENTARIO_ANIDADO}
 
+STRING {\"(.\\\").*\"}
 
-
-STRING {\"([^\\\n]|(\\.))*?\"}
-
-MASIGUAL \+=
-MASMAS \+\+
-IGUALIGUAL ==
-MENOSIGUAL -=
-MENOSMENOS --
-PORIGUAL \*=
-DIVIGUAL /=
-MODIGUAL %=
-MAYORIGUAL >=
-MENORIGUAL <=
-ANDIGUAL &=
-AND \&
-ORIGUAL \|=
-OROR \|\|
-OR \|
-ANDAND &&
-MENORMENOR <<
-MAYORMAYOR >>
-MENOR <
-MAYOR >
+OPERADORES {\+\+|\-|\-\=|\<\<|\>|\>\=|\>\>|\(|\)|\{|\}|\[|\]|\,|\.|\;|\=|\&\&|\|\||\+|\+\=|\-\-|\|\\=|\/|\/\=|\<|\<\=|}
 
 /* Esto es para informar de erorr en caso de que lo encontrado no coincida con nada de lo que tenemos */
 %option nounput
@@ -62,8 +40,8 @@ MAYOR >
 %%
 
 [ \t\n]+      
-\/\*(.|\n)*?\*\/   
-\/\/.*     
+COMENTARIO_BLOQUE  
+COMENTARIO_LINEA    
 
 {IDENTIFICADOR}     return ID;
 
@@ -71,7 +49,32 @@ MAYOR >
 
 {NUM_FLOAT}         return FLOATPOINT;
 
+{OPERADORES}        return OPERADORES;
 
+"/+" {
+//Numero de comentarios anidades, al principio es minimo uno debido al /+
+int num = 1;
+char c = '\0';
+
+// Mientras sea mayor que 0 y no sea un EOF
+while (num > 0 && c != EOF) {
+    c = input();
+    //Si es un '+/' quiere decir que cierra comentario, por lo que se resta al contador
+    if (c == '+') {
+        c = input();
+        if (c == '/') {
+            num--;
+        }
+    }
+    //Si es '/+' quiere decir que abre y por lo tanto se suma
+    else if (c == '/') {
+        c = input();
+        if (c == '+') {
+            num++;
+        }
+    }
+}
+}
 
 %%
 
