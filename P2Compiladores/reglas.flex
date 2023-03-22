@@ -29,13 +29,8 @@ COMENTARIO_LINEA {\/\/.*}
 
 STRING {\"(.\\\").*\"}
 
-OPERADORES {\+\+|\-|\-\=|\<\<|\>|\>\=|\>\>|\(|\)|\{|\}|\[|\]|\,|\.|\;|\=|\&\&|\|\||\+|\+\=|\-\-|\|\\=|\/|\/\=|\<|\<\=|}
+OPERADORES (\+\+|\-|\-\=|\<\<|\>|\>\=|\>\>|\(|\)|\{|\}|\[|\]|\,|\.|\;|\=|\&\&|\|\||\+|\+\=|\-\-|\|\\=|\/|\/\=|\<|\<\=)
 
-/* Esto es para informar de erorr en caso de que lo encontrado no coincida con nada de lo que tenemos */
-%option nounput
-
-/* En caso de que no haya entrada, el analizador se detendra en lugar de quedarse esperando por una entrada */
-%option noinput
 
 %%
 
@@ -49,12 +44,12 @@ COMENTARIO_LINEA
 
 {NUM_FLOAT}         return FLOATPOINT;
 
-{OPERADORES}        return OPERADORES;
+{OPERADORES}        return OPERADOR;
 
 "/+" {
 //Numero de comentarios anidades, al principio es minimo uno debido al /+
 int num = 1;
-char c = '\0';
+register int c;
 
 // Mientras sea mayor que 0 y no sea un EOF
 while (num > 0 && c != EOF) {
@@ -100,9 +95,9 @@ void siguiente_componente_lexico(tipoelem *actual){
     }else if(actual->codigo == -1){
         //componente lexico no reconocido
         //showError(8);
-    }else if(actual->codigo == OPERATOR){
+    }else if(actual->codigo == OPERADOR){
         //si es solo un caracter se devuekve como codigo su codigo ascii
-        //de esta forma coincide por completo con los codigoes de la práctica anterior
+        //de esta forma coincide por completo con los codigos de la práctica anterior
         if(strlen(actual->lexema)==1){
             actual->codigo = actual->lexema[0];
         }

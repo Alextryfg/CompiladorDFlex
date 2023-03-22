@@ -19,7 +19,7 @@
 #define FLOATPOINT 312
 
 //Operadores
-#define OPERADORES 403
+#define OPERADOR 403
 
 //Los delimitadores, tales como corchete, parentesis, llaves, puntos, comas, Asterisco (), [] , {} , . , , , * , + , /, ; ,...,
 //simplemente devolvere su código ASCII.
