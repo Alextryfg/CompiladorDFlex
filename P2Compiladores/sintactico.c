@@ -32,10 +32,10 @@ void compilarD(){
     /* Inicializo el componenteLexico que le enviare a la funcion del lexico.c */
     tipoelem comp;
     comp.lexema= NULL;
-    comp.codigo=-1;
+    comp.codigo=-2;
 
     /*Invoco a siguiente_componente lexico hasta -1 que indica que llego el EOF */
-    do{
+    while(comp.codigo != -1){
         siguiente_componente_lexico(&comp);
 
         _printComp(comp);
@@ -46,7 +46,7 @@ void compilarD(){
             comp.lexema=NULL;
         }
 
-    }while(comp.codigo != -1);
+    }
 
 
 

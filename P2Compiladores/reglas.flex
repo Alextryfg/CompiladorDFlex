@@ -93,7 +93,7 @@ void siguiente_componente_lexico(tipoelem *actual){
     if(actual->codigo == ID){
         //buscar en la tabla de simbolos
         findCodigo(actual);
-    }else if(actual->codigo == -1){
+    }else if(actual->codigo == -2){
         //componente lexico no reconocido
         //showError(8);
     }else if(actual->codigo == OPERADOR){
