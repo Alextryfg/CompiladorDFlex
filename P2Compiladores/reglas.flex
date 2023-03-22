@@ -63,13 +63,11 @@ MAYOR >
 
 %%
 
-/* Todo esto lo ignorara */
+[ \t\n]+      
+\/\*(.|\n)*?\*\/   
+\/\/.*     
 
-[ \t\n]+        /* se come los espacios en blanco */
-\/\*(.|\n)*?\*\/   /* Comentario en Bloque */
-\/\/.*     /* Comentario de una Linea */
-
-{IDENTIFICADOR}     return ID; /* lexemaes y palabras reservadas */
+{IDENTIFICADOR}     return ID; 
 
 %%
 
