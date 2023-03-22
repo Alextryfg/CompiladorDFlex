@@ -34,7 +34,7 @@ void compilarD(){
     comp.codigo=-1;
 
     /*Invoco a siguiente_componente lexico hasta -1 que indica que llego el EOF */
-    while(siguiente_componente_lexico(&comp) != -1){
+    while((&siguiente_componente_lexico) != -1){
         _printComp(comp);
 
         /* Se libera la memoria del lexema */

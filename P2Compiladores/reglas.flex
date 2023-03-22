@@ -11,14 +11,15 @@ BARRABAJA [_]
 DIGITO [0-9]
 NUMERO_BINARIO [0-1]
 
-//IDENTIFICADOR
+//lexema
 
-ID {ALFA}|{BARRABAJA}({ALFA}|{BARRABAJA}|{DIGITO})*
+IDENTIFICADOR {ALFA}|{BARRABAJA}({ALFA}|{BARRABAJA}|{DIGITO})*
 
 //ENTEROS
 
-ENTERO_DECIMAL {DIGITO}{DIGITO}*
-ENTERO_BINARIO 0b|0B({BARRABAJA}|{DIGITO})*
+ENTERO_DECIMAL {DIGITO}({BARRABAJA}|{DIGITO})*
+ENTERO_BINARIO 0b|0B({BARRABAJA}|{NUMERO_BINARIO})*
+NUM_ENTERO {ENTERO_DECIMAL|ENTERO_BINARIO}
 
 //FLOATS
 
@@ -35,7 +36,7 @@ DIGITO_SEPARADO {DIGITO}([_]?{DIGITO})*
 DECIMAL ({DIGITO_SEPARADO}*\.{DIGITO_SEPARADO}+({EXPONENCIAL})?|\.{DIGITO_SEPARADO}+({EXPONENCIAL})?)
 ENTERO_DECIMAL_2 ({DIGITO_SEPARADO}+{EXPONENCIAL})?
 
-FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
+NUM_FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 
 
 
@@ -43,7 +44,6 @@ FLOAT {DECIMAL}|{ENTERO_DECIMAL_2}
 
 COMENTARIO_BLOQUE {\/\*(.|\n)*?\*\/}
 COMENTARIO_LINEA {\/\/.*}
-COMENTARIO_ANIDADO {\+(?:[^+]|\+(?!\/)|\+\/(?!\/))*\+\/}
 COMENTARIO {COMENTARIO_BLOQUE}|{COMENTARIO_LINEA}|{COMENTARIO_ANIDADO}
 
 //CADENA DE CARACTERES
@@ -84,4 +84,46 @@ MAYOR >
 [ \t\n]+        /* se come los espacios en blanco */
 \/\*(.|\n)*?\*\/   /* Comentario en Bloque */
 \/\/.*     /* Comentario de una Linea */
-\+(?:[^+]|\+(?!\/)|\+\/(?!\/))*\+\/  /* Comentario Anidado */
+
+{IDENTIFICADOR}     return ID; /* lexemaes y palabras reservadas */
+
+%%
+
+
+// se intenta abrir el archivo dado su nombre
+void init(char *nombreArchivo){
+    FILE *archivo;
+    archivo = fopen(nombreArchivo, "r");
+    if(archivo == NULL){
+        showError(1);
+    }
+    yyin = archivo;
+}
+void siguiente_componente_lexico(tipoelem *actual){
+    actual->codigo = yylex();
+    if(actual->codigo != 0){
+        actual->lexema = strdup(yytext);
+    }
+    if(actual->codigo == ID){
+        //buscar en la tabla de simbolos
+        findElement(actual);
+    }else if(actual->codigo == -1){
+        //componente lexico no reconocido
+        showError(8);
+    }else if(actual->codigo == OPERATOR){
+        //si es solo un caracter se devuekve como codigo su codigo ascii
+        //de esta forma coincide por completo con los codigoes de la práctica anterior
+        if(strlen(actual->lexema)==1){
+            actual->codigo = actual->lexema[0];
+        }
+    }else if(actual->codigo == 0){
+        //al llamar a yyterminate, se devuelve 0
+        //se debe cambiar al codigo que tenemos definido para EOF en definiciones.h
+        actual->codigo = EOFVALUE;
+    }
+}
+
+void cerrarD(){
+    fclose(yyin);
+    yylex_destroy();
+}
