@@ -33,13 +33,13 @@ OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\
 
 %%
 
-[ \t\n]+ 
+[ \t\n]+  /* Espacios y saltos de linea que tambien ignora */
 \/\/(.*)  /* Comentario de una sola linea */   
 ("/*"([^*]|(\*+[^*/]))*\*+\/) /* Comentario en bloque */
 
 {IDENTIFICADOR}     return ID;
 
-{NUM_ENTERO}         return INTEGER;
+{NUM_ENTERO}        return INTEGER;
 
 {NUM_FLOAT}         return FLOATPOINT;
 
@@ -48,7 +48,7 @@ OPERADORES (\{|\}|\(|\)|\*\*|\=\=|\+\+|\+\=|\-\-|\-\=|\,|\.|\;|\:|\<|\>|\<\<|\>\
 {OPERADORES}        return OPERADOR;
 
 "/+" {
-//Numero de comentarios anidades, al principio es minimo uno debido al /+
+//Numero de comentarios anidados, al principio es minimo uno debido al /+
 int num = 1;
 register int c;
 
@@ -72,42 +72,45 @@ while (num > 0 && c != EOF) {
 }
 }
 
-<<EOF>>         return -1;
+<<EOF>>         return yyterminate();
 
 %%
 
 
-// se intenta abrir el archivo dado su nombre
+
 void init(char *nombreArchivo){
     FILE *archivo;
     archivo = fopen(nombreArchivo, "r");
     if(archivo == NULL){
-        //showError(1);
+        errorD(1);
     }
     yyin = archivo;
 }
 
-void siguiente_componente_lexico(tipoelem *actual){
-    actual->codigo = yylex();
-    if(actual->codigo != 0){
-        actual->lexema = strdup(yytext);
+void siguiente_componente_lexico(tipoelem *comp){
+
+    //Recogremos el codigo del siguiente componente detectado
+    comp->codigo = yylex();
+
+
+    if(comp->codigo != 0){
+        //Copiamos yytext en comp->lexema
+        comp->lexema = strdup(yytext);
     }
-    if(actual->codigo == ID){
-        //buscar en la tabla de simbolos
-        findCodigo(actual);
-    }else if(actual->codigo == -2){
+    if(comp->codigo == ID){
+        //Buscamos el codigo en la tabla de simbolos
+        findCodigo(comp);
+    }else if(comp->codigo == -2){
         //componente lexico no reconocido
-        //showError(8);
-    }else if(actual->codigo == OPERADOR){
-        //si es solo un caracter se devuekve como codigo su codigo ascii
-        //de esta forma coincide por completo con los codigos de la práctica anterior
-        if(strlen(actual->lexema)==1){
-            actual->codigo = actual->lexema[0];
+        errorD(6);
+    }else if(comp->codigo == OPERADOR){
+        //Operador de un solo carácter, se devuelve su ASCII, de otra forma devolvemos el codigo de OPERADOR
+        if(strlen(comp->lexema)==1){
+            comp->codigo = comp->lexema[0];
         }
-    }else if(actual->codigo == 0){
-        //al llamar a yyterminate, se devuelve 0
-        //se debe cambiar al codigo que tenemos definido para EOF en definiciones.h
-        actual->codigo = -1;
+    }else if(comp->codigo == 0){
+        //Con EOF, devolvemos 0 de yyterminate y lo transformamos en -1 para el sintactico acabe
+        comp->codigo = -1;
     }
 }
 

@@ -21,7 +21,4 @@
 //Operadores
 #define OPERADOR 403
 
-//Los delimitadores, tales como corchete, parentesis, llaves, puntos, comas, Asterisco (), [] , {} , . , , , * , + , /, ; ,...,
-//simplemente devolvere su código ASCII.
-
 #endif /* DEFINITIONS_H_ */

@@ -20,6 +20,9 @@ void errorD(int idCodigo){
         case 5:
             printf("\nParametros insuficiente en linea de comandos ./compiladorD regression.d\n");
             break;
+        case 6:
+            printf("\nComponente lexico no reconocido\n");
+            break;
 
     }
 }
