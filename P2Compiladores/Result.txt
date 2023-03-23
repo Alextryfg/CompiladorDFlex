@@ -1,0 +1,330 @@
+*************TABLA DE SIMBOLOS*************
+Lexema:           cast         Codigo: 309
+Lexema:         double         Codigo: 310
+Lexema:          float         Codigo: 304
+Lexema:        foreach         Codigo: 306
+Lexema:  identificador         Codigo: 301
+Lexema:         import         Codigo: 300
+Lexema:            int         Codigo: 303
+Lexema:         return         Codigo: 307
+Lexema:           void         Codigo: 308
+Lexema:          while         Codigo: 305
+*******************************************
+
+<300,import>
+<301,std>
+<46,.>
+<301,stdio>
+<59,;>
+<300,import>
+<301,std>
+<46,.>
+<301,algorithm>
+<46,.>
+<301,iteration>
+<59,;>
+<300,import>
+<301,std>
+<46,.>
+<301,exception>
+<59,;>
+<310,double>
+<301,beta1>
+<40,(>
+<310,double>
+<91,[>
+<93,]>
+<301,x>
+<44,,>
+<310,double>
+<91,[>
+<93,]>
+<301,y>
+<44,,>
+<310,double>
+<301,x_bar>
+<44,,>
+<310,double>
+<301,y_bar>
+<41,)>
+<123,{>
+<301,enforce>
+<40,(>
+<301,x>
+<46,.>
+<301,length>
+<403,==>
+<301,y>
+<46,.>
+<301,length>
+<44,,>
+<302,"x and y should be the same length!">
+<41,)>
+<59,;>
+<310,double>
+<301,num>
+<61,=>
+<311,0>
+<44,,>
+<301,denom>
+<61,=>
+<311,0>
+<59,;>
+<303,int>
+<301,whilectr>
+<61,=>
+<311,0>
+<59,;>
+<305,while>
+<40,(>
+<301,whilectr>
+<60,<>
+<301,x>
+<46,.>
+<301,length>
+<41,)>
+<123,{>
+<301,num>
+<403,+=>
+<40,(>
+<301,x>
+<91,[>
+<301,whilectr>
+<93,]>
+<45,->
+<301,x_bar>
+<41,)>
+<42,*>
+<40,(>
+<301,y>
+<91,[>
+<301,whilectr>
+<93,]>
+<45,->
+<301,y_bar>
+<41,)>
+<59,;>
+<301,whilectr>
+<403,++>
+<59,;>
+<125,}>
+<306,foreach>
+<40,(>
+<301,xval>
+<59,;>
+<301,x>
+<41,)>
+<301,denom>
+<403,+=>
+<40,(>
+<40,(>
+<301,xval>
+<45,->
+<301,x_bar>
+<41,)>
+<42,*>
+<40,(>
+<301,xval>
+<45,->
+<301,x_bar>
+<41,)>
+<41,)>
+<59,;>
+<307,return>
+<301,num>
+<47,/>
+<301,denom>
+<59,;>
+<125,}>
+<308,void>
+<301,main>
+<40,(>
+<41,)>
+<123,{>
+<310,double>
+<91,[>
+<93,]>
+<301,x>
+<61,=>
+<91,[>
+<311,0b>
+<311,1>
+<44,,>
+<311,2>
+<44,,>
+<311,3>
+<44,,>
+<311,4>
+<44,,>
+<311,5>
+<44,,>
+<312,6.5>
+<44,,>
+<311,7>
+<44,,>
+<312,7.5>
+<44,,>
+<311,8_000>
+<47,/>
+<312,1.0e+03>
+<44,,>
+<312,8.5>
+<93,]>
+<59,;>
+<310,double>
+<91,[>
+<93,]>
+<301,y>
+<61,=>
+<91,[>
+<311,1>
+<44,,>
+<311,2>
+<44,,>
+<311,3>
+<44,,>
+<312,3.2>
+<44,,>
+<312,3.4>
+<44,,>
+<312,40e-1>
+<44,,>
+<312,4.2>
+<44,,>
+<312,4.3>
+<44,,>
+<312,4.35>
+<44,,>
+<312,4.37>
+<93,]>
+<59,;>
+<310,double>
+<301,x_bar>
+<44,,>
+<301,y_bar>
+<44,,>
+<301,b1>
+<44,,>
+<301,_0>
+<59,;>
+<301,x_bar>
+<61,=>
+<301,sum>
+<40,(>
+<301,x>
+<41,)>
+<47,/>
+<40,(>
+<309,cast>
+<40,(>
+<310,double>
+<41,)>
+<301,x>
+<46,.>
+<301,length>
+<41,)>
+<59,;>
+<301,y_bar>
+<61,=>
+<301,sum>
+<40,(>
+<301,y>
+<41,)>
+<47,/>
+<40,(>
+<309,cast>
+<40,(>
+<310,double>
+<41,)>
+<301,y>
+<46,.>
+<301,length>
+<41,)>
+<59,;>
+<301,b1>
+<61,=>
+<301,beta1>
+<40,(>
+<301,x>
+<44,,>
+<301,y>
+<44,,>
+<301,x_bar>
+<44,,>
+<301,y_bar>
+<41,)>
+<59,;>
+<301,_0>
+<61,=>
+<301,y_bar>
+<45,->
+<40,(>
+<301,b1>
+<42,*>
+<301,x_bar>
+<41,)>
+<59,;>
+<301,writefln>
+<40,(>
+<302,"\"Slope\": %f">
+<44,,>
+<301,b1>
+<41,)>
+<59,;>
+<301,writefln>
+<40,(>
+<302,"\"Intercept\": %f">
+<44,,>
+<301,_0>
+<41,)>
+<59,;>
+<301,a>
+<61,=>
+<311,1>
+<59,;>
+<301,a>
+<61,=>
+<302," +/ 1">
+<59,;>
+<301,a>
+<61,=>
+<42,*>
+<311,2>
+<47,/>
+<311,3>
+<59,;>
+<125,}>
+*************TABLA DE SIMBOLOS*************
+Lexema:             _0         Codigo: 301
+Lexema:              a         Codigo: 301
+Lexema:      algorithm         Codigo: 301
+Lexema:             b1         Codigo: 301
+Lexema:          beta1         Codigo: 301
+Lexema:           cast         Codigo: 309
+Lexema:          denom         Codigo: 301
+Lexema:         double         Codigo: 310
+Lexema:        enforce         Codigo: 301
+Lexema:      exception         Codigo: 301
+Lexema:          float         Codigo: 304
+Lexema:        foreach         Codigo: 306
+Lexema:  identificador         Codigo: 301
+Lexema:         import         Codigo: 300
+Lexema:            int         Codigo: 303
+Lexema:      iteration         Codigo: 301
+Lexema:         length         Codigo: 301
+Lexema:           main         Codigo: 301
+Lexema:            num         Codigo: 301
+Lexema:         return         Codigo: 307
+Lexema:            std         Codigo: 301
+Lexema:          stdio         Codigo: 301
+Lexema:            sum         Codigo: 301
+Lexema:           void         Codigo: 308
+Lexema:          while         Codigo: 305
+Lexema:       whilectr         Codigo: 301
+Lexema:       writefln         Codigo: 301
+Lexema:              x         Codigo: 301
+Lexema:          x_bar         Codigo: 301
+Lexema:           xval         Codigo: 301
+Lexema:              y         Codigo: 301
+Lexema:          y_bar         Codigo: 301
+*******************************************
