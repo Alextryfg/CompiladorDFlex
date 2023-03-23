@@ -6,6 +6,8 @@
 
 %option noyywrap
 
+%option nounput
+
 ALFA [a-zA-Z]
 BARRABAJA [_]
 DIGITO [0-9]
