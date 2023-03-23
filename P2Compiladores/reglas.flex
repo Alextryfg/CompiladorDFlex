@@ -72,7 +72,7 @@ while (num > 0 && c != EOF) {
 }
 }
 
-<<EOF>>         yterminate();
+<<EOF>>         yyterminate();
 
 %%
 
