@@ -72,7 +72,7 @@ while (num > 0 && c != EOF) {
 }
 }
 
-<<EOF>>         return yyterminate();
+<<EOF>>         yterminate();
 
 %%
 
@@ -111,6 +111,7 @@ void siguiente_componente_lexico(tipoelem *comp){
     }else if(comp->codigo == 0){
         //Con EOF, devolvemos 0 de yyterminate y lo transformamos en -1 para el sintactico acabe
         comp->codigo = -1;
+        
     }
 }
 

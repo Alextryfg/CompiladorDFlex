@@ -8,7 +8,10 @@
  * Funcion que imprime el contenido del lexema dependiendo del caso
  */
 void _printComp(tipoelem comp){
-    printf("\n<%d,%s>", comp.codigo, comp.lexema);
+    if(comp.codigo != -1){
+        printf("\n<%d,%s>", comp.codigo, comp.lexema);
+    }
+    
 }
 
 /*
